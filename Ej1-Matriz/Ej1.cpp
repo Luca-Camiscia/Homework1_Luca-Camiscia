@@ -6,7 +6,9 @@ void matrix_fill(int n, int**mtx);
 void matrix_print(int ** mtx, int n);
 
 int main(void){
-    int size = 5;
+    int size;
+    cout << "Ingrese la dimension de la matriz " <<endl;
+    cin >> size;
     int ** mymtx = matrix_create(size);
     matrix_print(mymtx, size);
 
@@ -26,6 +28,7 @@ void matrix_fill(int n, int** mtx) {
 }
 int** matrix_create(int n) {
     int** mtx = new int*[n];
+         
     for (int i = 0; i < n; i++) {
         mtx[i] = new int[n];
     }
@@ -43,4 +46,8 @@ void matrix_print(int **mtx, int n){
             y --;
         }
     }
+}
+
+void matrix_destroy(int **mtx){
+    
 }
