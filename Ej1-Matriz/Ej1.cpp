@@ -10,6 +10,10 @@ int main(void){
     cout << "Ingrese la dimension de la matriz " <<endl;
     cin >> size;
     int ** mymtx = matrix_create(size);
+    if (mymtx == NULL);
+        cout << "Algo salio mal :( " << endl;
+        return;
+
     matrix_print(mymtx, size);
 
 }
@@ -27,12 +31,20 @@ void matrix_fill(int n, int** mtx) {
 
 }
 int** matrix_create(int n) {
-    int** mtx = new int*[n];
+    int** mtx = new (nothrow) int*[n];
+    if (mtx == nullptr) {
+        cerr << "Error: No se pudo alocar memoria para las filas de la matriz." << endl;
+        return NULL;
+    }
          
     for (int i = 0; i < n; i++) {
-        mtx[i] = new int[n];
+        mtx[i] = new (nothrow) int[n];
+        if (mtx[i] == nullptr) {
+            cerr << "Error: No se pudo alocar memoria para las columnas de la matriz." << endl;
+            return NULL;
+        }
     }
-    matrix_fill (n, mtx);
+    matrix_fill(n, mtx);
     return mtx;
 }
 void matrix_print(int **mtx, int n){
