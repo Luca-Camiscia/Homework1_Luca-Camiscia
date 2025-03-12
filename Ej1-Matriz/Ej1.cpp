@@ -4,18 +4,20 @@ using namespace std;
 int** matrix_create(int n);
 void matrix_fill(int n, int**mtx);
 void matrix_print(int ** mtx, int n);
+void matrix_destroy(int ** mtx, int n);
 
 int main(void){
     int size;
     cout << "Ingrese la dimension de la matriz " <<endl;
     cin >> size;
     int ** mymtx = matrix_create(size);
-    if (mymtx == NULL);
+    if (mymtx == NULL){ 
         cout << "Algo salio mal :( " << endl;
-        return;
-
+        return 1;
+        }
     matrix_print(mymtx, size);
-
+    matrix_destroy(mymtx, size);
+    return 0;
 }
 void matrix_fill(int n, int** mtx) {
     int x = 0;
@@ -44,6 +46,7 @@ int** matrix_create(int n) {
             return NULL;
         }
     }
+
     matrix_fill(n, mtx);
     return mtx;
 }
@@ -60,6 +63,9 @@ void matrix_print(int **mtx, int n){
     }
 }
 
-void matrix_destroy(int **mtx){
-    
+void matrix_destroy(int **mtx, int n){
+    for (int i = 0; i < n; i++) {
+        delete[] mtx[i];
+    }
+    delete[] mtx;
 }
