@@ -1,12 +1,7 @@
 #include <iostream>
 #include <chrono>
-
-
 #include <chrono>
-
-
 using namespace std;
-
 constexpr bool Pre_compare_texts1(const char* Atext,const char* Btext, unsigned pos ){
 
     if (Atext[pos] != Btext[pos]){
@@ -22,49 +17,35 @@ constexpr bool Pre_compare_texts1(const char* Atext,const char* Btext, unsigned 
         return (Pre_compare_texts1(Atext, Btext, pos+1));
     }
 }
-
-
-
 bool compare_texts1(const char* Atext,const char* Btext, unsigned pos);
 bool compare_texts2(string Atext,string Btext, unsigned pos);
-
 bool testfunc(bool (*compare_func)(const char*, const char*, unsigned));
 bool testfunc2(bool (*compare_func)(string, string, unsigned));
-
 int avg (int nums[], int size);
 
 int main (int argc, char*argv[]){
+    int resA, resB, i;
+    int tries;
     //inicializo las variables
     std::chrono::high_resolution_clock::time_point startTime, endTime;
     std::chrono::nanoseconds elapsedTime;
-
-
     //Preprocesamiento
-    const char *A = "hello world";
-    const char *B = "hello world";
+    
     startTime = std::chrono::high_resolution_clock::now();
-    Pre_compare_texts1(A, B, 0);
+    constexpr bool result = Pre_compare_texts1("hello", "hello", 0);
     endTime = std::chrono::high_resolution_clock::now();
     elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
-    
     int res_Pre = static_cast<int>(elapsedTime.count());
-
     //---------------------------------------------------------------
-    int resA, resB, i;
-    int tries;
+    
     if (argc == 2){
         tries = atoi(argv[1]);
     }
     else{ 
-    int tries = 100; //default
+     tries = 100; //default
     }
     int A_data[tries];
     int B_data[tries];
-   
-
-
-    
-
     //func1 
     for (i = 0;i<tries;i++) { 
     startTime = std::chrono::high_resolution_clock::now();
