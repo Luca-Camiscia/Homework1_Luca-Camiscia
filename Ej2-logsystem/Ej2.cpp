@@ -14,7 +14,7 @@ string create_output(string mensaje, int NivelSeveridad);
 int main (int argc, char*argv[]) { 
 
 logMessage("Debugeo el codigo", 1);
-logMessage("Posible mejora en linea x", 2);
+logMessage("Posible mejora en el codigo", 2);
 logMessage("Posible Leak", 3);
 logMessage("Error de memoria", 4);
 logMessage("Va a explotar todoooo", 5);
@@ -24,8 +24,9 @@ if (argc == 2){
     if (atoi(argv[1]) == 1){
         error_test();
     } 
+    cout << "esto no se imprimira ya que se terminara la ejecucion del problama con la funcion anterior" <<endl;
+
 }
-cout << "esto no se imprimira ya que se terminara la ejecucion del problama con la funcion anterior" <<endl;
 }
 
 
