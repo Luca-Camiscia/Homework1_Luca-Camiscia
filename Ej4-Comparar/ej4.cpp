@@ -5,9 +5,23 @@
 #include <chrono>
 
 
-
-
 using namespace std;
+
+constexpr bool Pre_compare_texts1(const char* Atext,const char* Btext, unsigned pos ){
+
+    if (Atext[pos] != Btext[pos]){
+        //cout << Atext[pos] << "!=" << Btext[pos] << endl;
+        return false;
+    }
+
+    if (Atext[pos] == '\0' && Btext[pos] == '\0'){
+        return true;
+    }
+
+    else {
+        return (Pre_compare_texts1(Atext, Btext, pos+1));
+    }
+}
 
 
 
@@ -20,7 +34,22 @@ bool testfunc2(bool (*compare_func)(string, string, unsigned));
 int avg (int nums[], int size);
 
 int main (int argc, char*argv[]){
+    //inicializo las variables
+    std::chrono::high_resolution_clock::time_point startTime, endTime;
+    std::chrono::nanoseconds elapsedTime;
+
+
+    //Preprocesamiento
+    const char *A = "hello world";
+    const char *B = "hello world";
+    startTime = std::chrono::high_resolution_clock::now();
+    Pre_compare_texts1(A, B, 0);
+    endTime = std::chrono::high_resolution_clock::now();
+    elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
     
+    int res_Pre = static_cast<int>(elapsedTime.count());
+
+    //---------------------------------------------------------------
     int resA, resB, i;
     int tries;
     if (argc == 2){
@@ -32,9 +61,9 @@ int main (int argc, char*argv[]){
     int A_data[tries];
     int B_data[tries];
    
-    //inicializo las variables
-    std::chrono::high_resolution_clock::time_point startTime, endTime;
-    std::chrono::nanoseconds elapsedTime;
+
+
+    
 
     //func1 
     for (i = 0;i<tries;i++) { 
@@ -62,6 +91,8 @@ int main (int argc, char*argv[]){
     }
     resB = avg(B_data, tries);
 
+
+    cout << "Analisis tiempo de ejecucion\n---------------------------------------------" << endl; 
     if (resA > resB){
         cout << "Es mas efectivo el char * !!!!" << endl;
     }
@@ -72,7 +103,8 @@ int main (int argc, char*argv[]){
     cout << "Espacio muestral -> " << tries << endl;
     cout <<"Char* avg  -> " << resA <<endl;
     cout <<"String avg ->" << resB <<endl;
-
+    cout << "----------------------------------------------------" << endl;
+    cout << "El tiempo que tardo con preprocesamiento la funcion de char es -> " << res_Pre << endl;
     return 0;
 }
 
@@ -111,8 +143,9 @@ bool compare_texts2(string Atext,string Btext, unsigned pos ){
     if (Atext[pos] == '\0' && Btext[pos] == '\0'){
         return true;
     }
-
-    return true;    
+    else {
+        return (compare_texts2(Atext, Btext, pos+1));
+    }
     }
 
 bool testfunc(bool (*compare_func)(const char*, const char*, unsigned)) {
