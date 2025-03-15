@@ -6,7 +6,7 @@ using namespace std;
 void logMessage(string mensaje, int NivelSeveridad);
 void logMessage(string error_men, string Archivo, int Linea);
 void logMessage(string mensaje_de_acceso, string username);
-void error_test(void);
+bool error_test(void);
 string create_output(string mensaje, int NivelSeveridad);
 
 
@@ -18,14 +18,15 @@ logMessage("Posible mejora en el codigo", 2);
 logMessage("Posible Leak", 3);
 logMessage("Error de memoria", 4);
 logMessage("Va a explotar todoooo", 5);
+logMessage("Actualizacion de Drivers", 7);
 logMessage("Segmentation Fault", "Ejecutable.exe", 32);
 logMessage("ACCESS GRANTED", "Steve Jobs");
 if (argc == 2){
     if (atoi(argv[1]) == 1){
-        error_test();
+        if (error_test()){
+            exit(1);
+        }
     } 
-    cout << "esto no se imprimira ya que se terminara la ejecucion del problama con la funcion anterior" <<endl;
-
 }
 }
 
@@ -53,6 +54,8 @@ string create_output(string mensaje, int NivelSeverdiad){
     case 6:
         messageType = "[SECURITY]";
         break;
+    case 7:
+        messageType = "[UPDATE]";
     default:
         messageType = "[UNKNOWN]";
         break;
@@ -100,12 +103,12 @@ void logMessage(string mensaje_de_acceso, string username){
 
 }
 
-void error_test(void){
+bool error_test(void){
     try{ 
     throw runtime_error("Un error salvaje ha aparecido!");
     }
     catch (const runtime_error& e) {
         logMessage(e.what(), 4);
-        exit(1); 
+        return true; 
     }
 }

@@ -35,35 +35,30 @@ int main(void) {
 
     int val1 = 1, val2 = 2, val3 = 3, val4 = 4, val5 = 5;
 
-    // Insert elements at the front
+    cout << "Creo lista incial insertando al frente" << endl;
     push_front(&val1, lista);
     push_front(&val2, lista);
     push_front(&val3, lista);
     print_list(lista);
-
-    // Insert elements at the back
+    cout << "Inserto dos elementos al final" << endl;
     push_back(&val4, lista);
     push_back(&val5, lista);
     print_list(lista);
-
-    // Insert element at position 2
+    cout << "Inserto elemento von val 6 en la pos 2" << endl;
     int val6 = 6;
     insert(&val6, lista, 2);
     print_list(lista);
 
-    // Erase front element
+    cout << "Elimino elemento al frente" << endl; 
     erase_front(lista);
     print_list(lista);
-
-    // Erase back element
+    cout << "Elimino elemento al fondo" << endl;
     erase_back(lista);
     print_list(lista);
-
-    // Erase element at position 2
+    cout << "Elimino elemento en la pos 2" << endl;
     erase(lista, 2);
     print_list(lista);
 
-    // Free the list
     free_list(lista);
 
     return 0;

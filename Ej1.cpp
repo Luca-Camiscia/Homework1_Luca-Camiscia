@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <limits>
 
 int** matrix_create(int n);
 void matrix_fill(int n, int**mtx);
@@ -8,13 +9,26 @@ void matrix_destroy(int ** mtx, int n);
 
 int main(void){
     int size;
+    bool aux = true;
+    while (aux){ 
     cout << "Ingrese la dimension de la matriz " <<endl;
     cin >> size;
+    if(cin.fail() || size <= 0) {
+        cout << "Por favor, ingrese un numero entero positivo." << endl;
+        cin.clear(); 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); //reseteo el buffer 
+    }
+    else{
+        aux = false;
+    }
+    }
+
     int ** mymtx = matrix_create(size);
     if (mymtx == NULL){ 
         cout << "Algo salio mal :( " << endl;
         return 1;
-        }
+    }
+
     matrix_print(mymtx, size);
     matrix_destroy(mymtx, size);
     return 0;

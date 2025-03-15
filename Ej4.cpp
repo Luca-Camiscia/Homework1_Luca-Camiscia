@@ -1,6 +1,5 @@
 #include <iostream>
 #include <chrono>
-#include <chrono>
 using namespace std;
 constexpr bool Pre_compare_texts1(const char* Atext,const char* Btext, unsigned pos ){
 
@@ -74,18 +73,18 @@ int main (int argc, char*argv[]){
 
 
     cout << "Analisis tiempo de ejecucion\n---------------------------------------------" << endl; 
-    if (resA > resB){
-        cout << "Es mas efectivo el char * !!!!" << endl;
+    if (resA < resB){
+        cout << "Es mas efectivo el char * !" << endl;
     }
     else{
-        cout << "Es mas efectivo el string !!!!" << endl;
+        cout << "Es mas efectivo el string !" << endl;
     }
 
     cout << "Espacio muestral -> " << tries << endl;
-    cout <<"Char* avg  -> " << resA <<endl;
-    cout <<"String avg ->" << resB <<endl;
+    cout <<"Char* avg-> " << resA << " nanosegundos" <<endl;
+    cout <<"String avg ->" << resB << " nanosegundos" <<endl;
     cout << "----------------------------------------------------" << endl;
-    cout << "El tiempo que tardo con preprocesamiento la funcion de char es -> " << res_Pre << endl;
+    cout << "El tiempo que tardo con preprocesamiento la funcion de char* es -> " << res_Pre << endl;
     return 0;
 }
 
@@ -121,7 +120,7 @@ bool compare_texts2(string Atext,string Btext, unsigned pos ){
         return false;
     }
 
-    if (Atext[pos] == '\0' && Btext[pos] == '\0'){
+    if (pos == Atext.size() && pos == Btext.size()) { //compruebo si esoty en la ultima pos de ambos
         return true;
     }
     else {
