@@ -143,7 +143,7 @@ bool insert(void * val, unique_ptr<list_t>& lista,unsigned pos){
         return false;
     }
     node_t* aux = lista->head.get();
-    for (int i = 0; i<(pos-1);i++){ //me paro en el nodo anterior a la posicion
+    for (int i = 0; i<(pos-2);i++){ //me paro en el nodo anterior a la posicion
         aux = aux->next.get();
     }
     new_node->next = move(aux->next);
@@ -207,7 +207,7 @@ bool erase(unique_ptr<list_t>& lista, unsigned pos){
     }
 
     node*aux = lista->head.get();
-    for (int i = 0;i<(pos-1);i++){
+    for (int i = 0;i<(pos-2);i++){
         aux = aux->next.get();
     }
     aux->next = move(aux->next->next);

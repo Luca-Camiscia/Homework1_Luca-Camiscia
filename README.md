@@ -10,7 +10,7 @@ El ejercicio 2 puede compilarse y correrse utilizando los comandos "make Ej2" o 
 
 # Ej3
 
-El ejercicio 3 puede compilarse y correrse utilizando el comando "make Ej3". Por terminal se imprimira una lista junto a mensajes que muestran la funcino que se va a llamar y el estado de la lista luego aplicarse. Para las funciones donde el la funcion requiere de una posicion especifica para eliminar o agregar un nodo asumo que las posiciones comienzan en 0 (es decir que si alguien quiere ingresar algo en la posicion 2, el nuevo elemento pasaria a ser el tercer elemento de la lista).
+El ejercicio 3 puede compilarse y correrse utilizando el comando "make Ej3". Por terminal se imprimira una lista junto a mensajes que muestran la funcino que se va a llamar y el estado de la lista luego aplicarse. Para las funciones donde el la funcion requiere de una posicion especifica para eliminar o agregar un nodo asumo que las posiciones comienzan en 1 (si alguien inserta algo en la segunda posicion, lo que inserta sera el segundo elemento de la lista).
 
 # Ej4
 
