@@ -26,14 +26,14 @@ int main (int argc, char*argv[]){
     int resA, resB, i;
     int tries;
     //inicializo las variables
-    std::chrono::high_resolution_clock::time_point startTime, endTime;
-    std::chrono::nanoseconds elapsedTime;
+    chrono::high_resolution_clock::time_point startTime, endTime;
+    chrono::nanoseconds elapsedTime;
     //Preprocesamiento
     
-    startTime = std::chrono::high_resolution_clock::now();
+    startTime = chrono::high_resolution_clock::now();
     constexpr bool result = Pre_compare_texts1("hello", "hello", 0);
-    endTime = std::chrono::high_resolution_clock::now();
-    elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
+    endTime = chrono::high_resolution_clock::now();
+    elapsedTime = chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
     int res_Pre = static_cast<int>(elapsedTime.count());
     //---------------------------------------------------------------
     
@@ -47,26 +47,26 @@ int main (int argc, char*argv[]){
     int B_data[tries];
     //func1 
     for (i = 0;i<tries;i++) { 
-    startTime = std::chrono::high_resolution_clock::now();
+    startTime = chrono::high_resolution_clock::now();
     if (!testfunc(compare_texts1)){
         cout << "La funcion no funciona correctamente" << endl;
         return 0;
     }
-    endTime = std::chrono::high_resolution_clock::now();
-    elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
+    endTime = chrono::high_resolution_clock::now();
+    elapsedTime = chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
     A_data[i] = static_cast<int>(elapsedTime.count()); 
     }
     resA = avg(A_data, tries);
 
     //func2
     for (i = 0;i<tries;i++) { 
-    startTime = std::chrono::high_resolution_clock::now();
+    startTime = chrono::high_resolution_clock::now();
     if (!testfunc2(compare_texts2)){
         cout << "La funcion no funciona correctamente" << endl;
         return 0;
     }
-    endTime = std::chrono::high_resolution_clock::now();
-    elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
+    endTime = chrono::high_resolution_clock::now();
+    elapsedTime = chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
     B_data[i] = static_cast<int>(elapsedTime.count());
     }
     resB = avg(B_data, tries);
@@ -95,7 +95,7 @@ int avg(int nums[], int size) {
     }
     return sum / size;
 }
-
+    
 bool compare_texts1(const char* Atext,const char* Btext, unsigned pos ){
 
     if (Atext[pos] != Btext[pos]){
@@ -120,7 +120,7 @@ bool compare_texts2(string Atext,string Btext, unsigned pos ){
         return false;
     }
 
-    if (pos == Atext.size() && pos == Btext.size()) { //compruebo si esoty en la ultima pos de ambos
+    if (pos == (Atext.size()-1) && pos == (Btext.size()-1)) { //compruebo si esoty en la ultima pos de ambos
         return true;
     }
     else {
