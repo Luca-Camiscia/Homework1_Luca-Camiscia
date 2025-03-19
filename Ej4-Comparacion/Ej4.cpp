@@ -1,6 +1,4 @@
-#include <iostream>
-#include <chrono>
-using namespace std;
+#include "Ej4.hpp"
 constexpr bool Pre_compare_texts1(const char* Atext,const char* Btext, unsigned pos ){
 
     if (Atext[pos] != Btext[pos]){
@@ -16,11 +14,6 @@ constexpr bool Pre_compare_texts1(const char* Atext,const char* Btext, unsigned 
         return (Pre_compare_texts1(Atext, Btext, pos+1));
     }
 }
-bool compare_texts1(const char* Atext,const char* Btext, unsigned pos);
-bool compare_texts2(string Atext,string Btext, unsigned pos);
-bool testfunc(bool (*compare_func)(const char*, const char*, unsigned));
-bool testfunc2(bool (*compare_func)(string, string, unsigned));
-int avg (int nums[], int size);
 
 int main (int argc, char*argv[]){
     int resA, resB, i;
@@ -31,7 +24,9 @@ int main (int argc, char*argv[]){
     //Preprocesamiento
     
     startTime = chrono::high_resolution_clock::now();
-    constexpr bool result = Pre_compare_texts1("hello", "hello", 0);
+    constexpr const char* pre_A = "hello";
+    constexpr const char* pre_B = "hello";
+    constexpr bool result = Pre_compare_texts1(pre_A, pre_B, 0);
     endTime = chrono::high_resolution_clock::now();
     elapsedTime = chrono::duration_cast<std::chrono::nanoseconds>( endTime - startTime);
     int res_Pre = static_cast<int>(elapsedTime.count());

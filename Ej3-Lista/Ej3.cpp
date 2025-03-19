@@ -1,32 +1,5 @@
-#include <iostream>
-#include <memory>
-using namespace std;
+#include "Ej3.hpp"
 
-struct node;
-typedef struct node node_t;
-typedef struct list list_t;
-
-bool push_front(void* val, shared_ptr<list_t>& lista);
-bool push_back(void * val, shared_ptr<list_t>& lista);
-bool insert(void * val, shared_ptr<list_t>& lista,unsigned pos);
-bool erase_front(shared_ptr<list_t>& lista);
-bool erase_back(shared_ptr<list_t>& lista);
-bool erase(shared_ptr<list_t>& lista, unsigned pos);
-void print_list(shared_ptr<list_t>& lista);
-void free_list(shared_ptr<list_t>& lista);
-struct node {
-    shared_ptr<void*> value;
-    shared_ptr<node_t> next;
-};
-
-struct list {
-    shared_ptr<node_t> head;
-    shared_ptr<node_t> tail; 
-    unsigned size;
-};
-
-shared_ptr<node_t> create_node(void* val);
-shared_ptr<list_t> create_list(void);
 int main(void) {
     shared_ptr<list_t> lista = create_list();
     if (!lista) {
@@ -70,22 +43,14 @@ int main(void) {
 }
 
 shared_ptr<node_t> create_node(void* val) {
-    shared_ptr<node_t> new_node = make_unique<node_t>();
-    if (!new_node) {
-        cout << "Error al crear un nodo" << endl;
-        return nullptr;
-    }
-    new_node->value = make_unique<void*>(val);
+    shared_ptr<node_t> new_node = make_shared<node_t>();
+    new_node->value = make_shared<void*>(val);
     new_node->next = nullptr;
     return new_node;
 }
 
 shared_ptr<list_t> create_list(void) {
-    shared_ptr<list_t> new_list = make_unique<list_t>();
-    if (!new_list) {
-        cout << "Error al crear una lista" << endl;
-        return nullptr;
-    }
+    shared_ptr<list_t> new_list = make_shared<list_t>();
     new_list->head = nullptr;
     new_list->tail = nullptr;
     new_list->size = 0;
@@ -93,10 +58,6 @@ shared_ptr<list_t> create_list(void) {
 }
 bool push_front(void* val, shared_ptr<list_t>& lista) {
     shared_ptr<node_t> new_node = create_node(val);
-    if (!new_node) {
-        cout << "Error" << endl;
-        return false;
-    }
     // caso lista vacia
     if (!lista->head) {
         lista->head = new_node;
@@ -112,10 +73,6 @@ bool push_front(void* val, shared_ptr<list_t>& lista) {
 }
 bool push_back(void * val, shared_ptr<list_t>& lista){
     shared_ptr<node_t> new_node = create_node(val);
-    if (!new_node) {
-        cout << "Error" << endl;
-        return false;
-    }
     // caso lista vacia
     if (!lista->head) {
         lista->head = new_node;
@@ -143,10 +100,7 @@ bool insert(void * val, shared_ptr<list_t>& lista,unsigned pos){
     }
 
     shared_ptr<node_t> new_node = create_node(val);
-    if (!new_node) {
-        cout << "Error" << endl;
-        return false;
-    }
+    
     shared_ptr<node_t> aux= lista->head;
     for (int i = 0; i<(pos-2);i++){ //me paro en el nodo anterior a la posicion
         aux = aux->next;

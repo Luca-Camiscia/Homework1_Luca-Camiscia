@@ -1,11 +1,4 @@
-#include <iostream>
-using namespace std;
-#include <limits>
-
-int** matrix_create(int n);
-void matrix_fill(int n, int**mtx);
-void matrix_print(int ** mtx, int n);
-void matrix_destroy(int ** mtx, int n);
+#include "Ej1.hpp"
 
 int main(void){
     int size;
@@ -22,7 +15,6 @@ int main(void){
         aux = false;
     }
     }
-
     int ** mymtx = matrix_create(size);
     if (mymtx == NULL){ 
         cout << "Algo salio mal :( " << endl;
@@ -68,7 +60,7 @@ void matrix_print(int **mtx, int n){
     int x = (n-1);
     int y = (n-1);
     for (int i = 0;i<(n*n); i++){
-        cout << "[" << y << "]" << "[" << x << "]" << "==" << mtx[y][x] <<endl;
+        cout << "[" << y << "]" << "[" << x << "]" << " == " << mtx[y][x] <<endl;
         x --;
         if (x < 0){ //termine la fila
             x = (n-1);
