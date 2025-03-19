@@ -186,9 +186,6 @@ void print_list(shared_ptr<list_t>& lista) {
     cout << "NULL" << endl;
 }
 void free_list(shared_ptr<list_t>& lista) {
-    while (lista->head) {
-        lista->head = move(lista->head->next);
-    }
-    lista->tail = nullptr;
-    lista->size = 0;
+    lista->head.reset();
+    lista->tail.reset();
 }
