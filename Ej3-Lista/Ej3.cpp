@@ -178,10 +178,10 @@ void print_list(shared_ptr<list_t>& lista) {
         cout << "La lista esta vacia" << endl;
         return;
     }
-    node_t* current = lista->head.get();
+    shared_ptr<node_t> current = lista->head;
     while (current) {
         cout << *static_cast<int*>(*current->value) << " -> " ;
-        current = current->next.get();
+        current = current->next;
     }
     cout << "NULL" << endl;
 }
